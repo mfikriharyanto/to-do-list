@@ -1,6 +1,6 @@
 #!/bin/bash
-echo DB_HOST=localhost >> .env
-echo DB_USER=postgres >> .env
-echo DB_PASSWORD=postgres >> .env
-echo DB_NAME=todolist >> .env
-echo DB_PORT=5432 >> .env
+echo DB_HOST=$DB_HOST >> .env
+echo DB_USER=$DB_USER >> .env
+echo DB_PASSWORD=$DB_PASSWORD >> .env
+echo DB_NAME=$DB_NAME >> .env
+echo DB_PORT=$DB_PORT >> .env
