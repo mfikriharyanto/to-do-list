@@ -2,22 +2,20 @@ package main
 
 import (
 	"log"
+	"to-do-list/config"
 	"to-do-list/handler"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	dsn := "host=localhost user=postgres password=postgres dbname=todolist port=5432"
-	_, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	message, err := config.ConnectDatabase()
 
 	if err != nil {
-		log.Fatal("Database connection refused")
+		log.Fatalf("Error: %v", err)
 	}
 
-	log.Print("Database connection success")
+	log.Print(message)
 
 	router := gin.Default()
 	router.GET("", handler.GetHelloWorld)
