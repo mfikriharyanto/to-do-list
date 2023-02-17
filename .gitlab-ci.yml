@@ -32,12 +32,14 @@ analyze:
     - ln -s /opt/sonar-scanner-4.8.0.2856-linux/bin/sonar-scanner /usr/local/bin/sonar-scanner
     - go version
   script:
-    - sonar-scanner \
-        -Dsonar.host.url=$SONAR_HOST_URL \
-        -Dsonar.login=$SONAR_TOKEN \
-        -Dsonar.projectKey=$SONAR_PROJECT_KEY \
-        -Dsonar.language=go \
-        -Dsonar.sources=. \
-        -Dsonar.exclusions=**/*_test.go \
-        -Dsonar.tests=. \
-        -Dsonar.test.inclusions=**/*_test.go \
+    - >
+      sonar-scanner 
+      -Dsonar.login=$SONAR_TOKEN 
+      -Dsonar.host.url=$SONAR_HOST_URL 
+      -Dsonar.projectKey=$SONAR_PROJECT_KEY 
+      -Dsonar.language=go 
+      -Dsonar.sources=. 
+      -Dsonar.exclusions=**/*_test.go 
+      -Dsonar.tests=. 
+      -Dsonar.test.inclusions=**/*_test.go
+        
