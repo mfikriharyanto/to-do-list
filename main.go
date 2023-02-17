@@ -12,7 +12,7 @@ func main() {
 	message, err := config.ConnectDatabase()
 
 	if err != nil {
-		log.Fatalf("Error: %v", err)
+		log.Printf("Error: %v", err)
 	}
 
 	log.Print(message)
