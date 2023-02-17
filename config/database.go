@@ -3,28 +3,22 @@ package config
 import (
 	"errors"
 	"fmt"
+	"os"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"github.com/spf13/viper"
 )
 
 func ConnectDatabase() (string, error) {
-	viper.SetConfigFile(".env")
-	err := viper.ReadInConfig()
-
-	if err != nil {
-		return "", errors.New("failed while reading config file")
-	}
-
-	host := viper.Get("DB_HOST").(string)
-	user := viper.Get("DB_USER").(string)
-	password := viper.Get("DB_PASSWORD").(string)
-	dbname := viper.Get("DB_NAME").(string)
-	port := viper.Get("DB_PORT").(string)
+	host := os.Getenv("DB_HOST")
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	dbname := os.Getenv("DB_NAME")
+	port := os.Getenv("DB_PORT")
 
 	dsn := fmt.Sprintf("host=%v user=%v password=%v dbname=%v port=%v", host, user, password, dbname, port)
-	_, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	_, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	fmt.Print(dsn)
 
 	if err != nil {
 		return "", errors.New("database connection refused")
