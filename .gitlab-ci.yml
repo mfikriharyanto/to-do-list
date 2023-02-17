@@ -4,6 +4,7 @@ stages:
   - build
   - test
   - analyze
+  - deploy
 
 before_script:
   - go version
@@ -23,7 +24,6 @@ test:
 
 analyze:
   stage: analyze
-  image: golang:latest
   before_script:
     - apt-get update
     - apt-get install -y unzip
@@ -42,4 +42,13 @@ analyze:
       -Dsonar.exclusions=**/*_test.go 
       -Dsonar.tests=. 
       -Dsonar.test.inclusions=**/*_test.go
-        
+
+deploy:
+  stage: deploy
+  before_script:
+    - apt-get update -qq
+    - apt-get install -y curl
+    - curl -L https://fly.io/install.sh | sh
+    - ln -s /root/.fly/bin/flyctl /usr/local/bin/flyctl
+  script:
+    - flyctl deploy
