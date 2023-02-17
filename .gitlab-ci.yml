@@ -44,11 +44,15 @@ analyze:
 deploy:
   stage: deploy
   before_script:
-    - chmod +x ./setup_env.sh
-    - ./setup_env.sh
-    - apt-get update -qq
+    - apt-get update
     - apt-get install -y curl
     - curl -L https://fly.io/install.sh | sh
     - ln -s /root/.fly/bin/flyctl /usr/local/bin/flyctl
   script:
+    - flyctl secrets set \
+      DB_HOST=$DB_HOST \
+      DB_USER=$DB_USER \
+      DB_PASSWORD=$DB_PASSWORD \
+      DB_NAME=$DB_NAME \
+      DB_PORT=$DB_PORT \
     - flyctl deploy
