@@ -2,14 +2,14 @@ package main
 
 import (
 	"log"
-	"to-do-list/config"
+	"to-do-list/db"
 	"to-do-list/handler"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	message, err := config.ConnectDatabase()
+	message, err := db.ConnectDatabase()
 
 	if err != nil {
 		log.Printf("Error: %v", err)
