@@ -9,8 +9,6 @@ stages:
 before_script:
   - go version
   - go mod download
-  - chmod +x ./setup_env.sh
-  - ./setup_env.sh
 
 build:
   stage: build
@@ -46,6 +44,8 @@ analyze:
 deploy:
   stage: deploy
   before_script:
+    - chmod +x ./setup_env.sh
+    - ./setup_env.sh
     - apt-get update -qq
     - apt-get install -y curl
     - curl -L https://fly.io/install.sh | sh
