@@ -49,10 +49,11 @@ deploy:
     - curl -L https://fly.io/install.sh | sh
     - ln -s /root/.fly/bin/flyctl /usr/local/bin/flyctl
   script:
-    - flyctl secrets set \
-      DB_HOST=$DB_HOST \
-      DB_USER=$DB_USER \
-      DB_PASSWORD=$DB_PASSWORD \
-      DB_NAME=$DB_NAME \
-      DB_PORT=$DB_PORT \
+    - >
+      flyctl secrets set 
+      DB_HOST=$DB_HOST 
+      DB_USER=$DB_USER 
+      DB_PASSWORD=$DB_PASSWORD 
+      DB_NAME=$DB_NAME 
+      DB_PORT=$DB_PORT 
     - flyctl deploy
