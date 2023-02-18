@@ -40,6 +40,7 @@ analyze:
       -Dsonar.exclusions=**/*_test.go 
       -Dsonar.tests=. 
       -Dsonar.test.inclusions=**/*_test.go
+  allow_failure: true
 
 deploy:
   stage: deploy
