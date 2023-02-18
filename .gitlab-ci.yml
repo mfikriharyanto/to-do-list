@@ -58,3 +58,6 @@ deploy:
       DB_NAME=$DB_NAME 
       DB_PORT=$DB_PORT 
     - flyctl deploy
+  only:
+    - staging
+    - master
