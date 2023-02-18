@@ -19,6 +19,9 @@ func main() {
 
 	router := gin.Default()
 	router.GET("", handler.GetHelloWorld)
+	router.GET("/todos", handler.GetTodos)
+	router.GET("/todos/:id", handler.GetTodo)
+	router.POST("/todos", handler.PostTodo)
 
 	router.Run(":8080")
 }
