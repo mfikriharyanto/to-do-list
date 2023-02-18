@@ -39,7 +39,8 @@ analyze:
       -Dsonar.sources=. 
       -Dsonar.exclusions=**/*_test.go 
       -Dsonar.tests=. 
-      -Dsonar.test.inclusions=**/*_test.go
+      -Dsonar.test.inclusions=**/*_test.go 
+      -Dsonar.go.coverage.reportPaths=coverage.out
   allow_failure: true
 
 deploy:
